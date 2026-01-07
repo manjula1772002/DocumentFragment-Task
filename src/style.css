@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.product-items li{
+    padding: 1px;
+    margin: 3px;
+    background:#f18b8b;
+    border-radius: 3px;
+    background-size: contain;
+}
