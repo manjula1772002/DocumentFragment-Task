@@ -13,15 +13,55 @@ const products=[
   "product41", "product42", "product43", "product44", "product45",
   "product46", "product47", "product48", "product49", "product50"
 ];
-const itemsLi=document.getElementById("items")
-const productli=document.createDocumentFragment()
-products.forEach(product => {
-     const li=document.createElement("li")
-     li.textContent=product
-     li.className="product-items"
-     productli.append(li)
-    
+const itemsLi = document.getElementById("items");
+const searchInput = document.getElementById("search");
+const searchButton = document.getElementById("submit");
+const searchMessage = document.getElementById("message");
+
+function renderProducts(list) {
+  itemsLi.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+
+  list.forEach(product => {
+    const li = document.createElement("li");
+    li.textContent = product;
+    li.className = "product-items";
+    fragment.append(li);
+  });
+
+  itemsLi.append(fragment);
+}
+
+function searchProduct(name) {
+  if (!name) {
+    searchMessage.textContent = "Showing all products.";
+    renderProducts(products);
+    return;
+  }
+
+  const lowerName = name.toLowerCase();
+  const matches = products.filter(product =>
+    product.toLowerCase().includes(lowerName)
+  );
+
+  if (matches.length > 0) {
+    searchMessage.textContent = `Found ${matches.length} product(s).`;
+    renderProducts(matches);
+  } else {
+    searchMessage.textContent = "Your product is not in this list.";
+    itemsLi.innerHTML = "";
+  }
+}
+
+renderProducts(products);
+console.timeEnd("DocumentFragment");
+
+searchButton.addEventListener("click", () => {
+  searchProduct(searchInput.value.trim());
 });
 
-itemsLi.append(productli);
-console.timeEnd("DocumentFragment")
+searchInput.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    searchProduct(searchInput.value.trim());
+  }
+});

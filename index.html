@@ -8,11 +8,15 @@
     <link rel="stylesheet" href="./src/style.css">
   </head>
   <body  class="m-2 ">
-    <div class="p-2 m-2 "><h1 class="capitalize text-3xl text-center font-semibold underline-1 shadow-2xs border-gray-300 ">products</h1>
-
-    <ul class="product-items  text-center grid grid-cols-5 capitalize list-none" id="items">
-      
-    </ul></div>
+    <div class="p-2 m-2 ">
+      <h1 class="capitalize text-3xl text-center font-semibold underline-1 shadow-2xs border-gray-300 ">products</h1>
+      <div class="search-container text-center mb-4">
+        <input id="search" name="search" type="text" placeholder="Search product name" class="p-2 border rounded" />
+        <button id="submit" class="p-2 ml-2 border rounded bg-gray-500 text-white">Search</button>
+        <p id="message" class="mt-2 text-sm text-gray-600"></p>
+      </div>
+      <ul class="product-items text-center grid grid-cols-5 capitalize list-none" id="items"></ul>
+    </div>
     
     <script type="module"  src="./src/main.js"></script>
   </body>
